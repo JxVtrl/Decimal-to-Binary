@@ -46,3 +46,13 @@ h3{
 .botao:hover{
     background: #e5e5e5;
 }
+
+#output{
+    margin: auto;
+    background-color: white;
+    width: fit-content;
+    padding: 0 4px;
+    border-radius: 10px;
+    height: 25px;
+    margin-bottom: 10px;
+}

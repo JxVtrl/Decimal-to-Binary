@@ -4,6 +4,7 @@ let controle = false
 
 document.getElementById('toggle').addEventListener('click', () => {
     if(controle == false){
+        controle = true
         document.title = 'Binary to Decimal'
         
         document.getElementById('title').innerHTML = 'Binary to Decimal'
@@ -13,10 +14,11 @@ document.getElementById('toggle').addEventListener('click', () => {
         input.value = ''
         output.innerHTML = ''
         
+        input.max = '1'
         input.addEventListener('keypress', teste)
-        controle = true
     }
     else{
+        controle = false
         document.title = 'Decimal to Binary'
         
         document.getElementById('title').innerHTML = 'Decimal to Binary'
@@ -26,7 +28,7 @@ document.getElementById('toggle').addEventListener('click', () => {
         input.value = ''
         output.innerHTML = ''
         
-        controle = false
+        input.removeEventListener('keypress', teste)
     }
 })
 
@@ -55,15 +57,16 @@ function binaryToDecimal(binary){
             decimal += Math.pow(2, i)
         }
     }
+
+    decimal == 0 ? decimal = 'Invalid binary' : decimal
+
     return decimal
 }
 
 function teste(e){
-    console.log(e.key)
-
     if(e.key >= 2){
-        input.style.border = '1px solid red'
-        output.innerHTML = 'Invalid Input'
+        input.value = ''
+        output.innerHTML = 'Invalid binary'
     }
     else{
         return e.key
