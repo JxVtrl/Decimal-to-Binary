@@ -4,28 +4,31 @@ let controle = false
 
 document.getElementById('toggle').addEventListener('click', () => {
     if(controle == false){
-        controle = true
+        document.title = 'Binary to Decimal'
+        
         document.getElementById('title').innerHTML = 'Binary to Decimal'
         document.getElementById('title-2').innerHTML = 'Insert Binary:'
-        document.getElementById('user-input').pattern = '^[0-1]*$'
-        document.getElementById('user-input').value = ''
-        document.getElementById('user-input').placeholder = 'Insert Binary'
+        
+        input.placeholder = 'Insert Binary'
+        input.value = ''
         output.innerHTML = ''
-        document.title = 'Binary to Decimal'
-        document.getElementById('user-input').addEventListener('keypress', teste)
+        
+        input.addEventListener('keypress', teste)
+        controle = true
     }
     else{
-        controle = false
+        document.title = 'Decimal to Binary'
+        
         document.getElementById('title').innerHTML = 'Decimal to Binary'
         document.getElementById('title-2').innerHTML = 'Insert Decimal:'
+        
+        input.placeholder = 'Insert Decimal'
+        input.value = ''
         output.innerHTML = ''
-        document.getElementById('user-input').value = ''
-        document.getElementById('user-input').placeholder = 'Insert Decimal'
-        document.title = 'Decimal to Binary'
+        
+        controle = false
     }
 })
-
-
 
 function convert(){
     if(controle == false){
@@ -34,7 +37,6 @@ function convert(){
     else{
         output.innerHTML = binaryToDecimal(input.value)
     }
-    
 }
 
 function decimalToBinary(decimal){
@@ -43,7 +45,6 @@ function decimalToBinary(decimal){
         binary.push(decimal % 2)
         decimal = Math.floor(decimal / 2)
     }
-
     return binary.reverse().join('')
 }
 
@@ -58,8 +59,10 @@ function binaryToDecimal(binary){
 }
 
 function teste(e){
-    if(e.key > 1){
-        input.value = ''
+    console.log(e.key)
+
+    if(e.key >= 2){
+        input.style.border = '1px solid red'
         output.innerHTML = 'Invalid Input'
     }
     else{
